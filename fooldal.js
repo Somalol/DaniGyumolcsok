@@ -1,0 +1,22 @@
+const zoldsegek_gyumolcsok = [
+  {nev: "Alma", ar: 300, kep: "images/alma.jpg"},
+  {nev: "Banán", ar: 400, kep: "images/banan.jpg"},
+  {nev: "Narancs", ar: 350, kep: "images/narancs.jpg"},
+  {nev: "Paradicsom", ar: 250, kep: "images/paradicsom.jpg"},
+  {nev: "Uborka", ar: 200, kep: "images/uborka.jpg"},
+  {nev: "Káposzta", ar: 150, kep: "images/kaposzta.jpg"},
+  {nev: "Sárgarépa", ar: 180, kep: "images/sargarepa.jpg"},
+  {nev: "Körte", ar: 320, kep: "images/korle.jpg"},
+  {nev: "Szőlő", ar: 450, kep: "images/szolo.jpg"},
+  {nev: "Eper", ar: 500, kep: "images/eper.jpg"},
+  {nev: "Cseresznye", ar: 600, kep: "images/cseresznye.jpg"},
+  {nev: "Kivi", ar: 400, kep: "images/kivi.jpg"},
+  {nev: "Paprika", ar: 220, kep: "images/paprika.jpg"},
+  {nev: "Hagyma", ar: 130, kep: "images/hagyma.jpg"},
+  {nev: "Fokhagyma", ar: 170, kep: "images/fokhagyma.jpg"},
+  {nev: "Cukkini", ar: 210, kep: "images/cukkini.jpg"},
+  {nev: "Ananász", ar: 550, kep: "images/ananasz.jpg"},
+  {nev: "Málna", ar: 480, kep: "images/malna.jpg"},
+  {nev: "Káposzta", ar: 150, kep: "images/kaposzta.jpg"},
+  {nev: "Citrom", ar: 300, kep: "images/citrom.jpg"}
+];
