@@ -14,6 +14,12 @@ EZ MÉG NEM JÓ    rendelések és annak minden adatának lekérése felhasznál
 
 
 Frontend:
-
+    Főoldal:
+        Összes termék adatának kiírása a modalba és a kártyákra
+        Termékek kosárba helyzése
+        Kosár megjelenítése
+        Kosárban a termékeket csökkenteni és növelni
+        Admin felület megcsinálása
+        Kártyákon csak bizonyos hosszig jelenjen meg a leírás
 
 KÉSZ Database:
