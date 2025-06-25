@@ -7,43 +7,10 @@ use Illuminate\Http\Request;
 
 class TermekekController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Minden termék lekérése
+    public function osszesTermek()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Termekek $termekek)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Termekek $termekek)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Termekek $termekek)
-    {
-        //
+        $termekek = Termekek::OsszesTermek();
+        return response()->json($termekek);
     }
 }
