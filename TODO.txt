@@ -8,7 +8,7 @@ EZ MÉG NEM JÓ    rendelések és annak minden adatának lekérése felhasznál
 
     Termékek:
         C : termékek felvitele,
-        R : termékek kiírása minden adatukkal együtt,
+KÉSZ    R : termékek kiírása minden adatukkal együtt,
         U : termék bármely adatának módosítása,
         D : termékek törlése;
 
