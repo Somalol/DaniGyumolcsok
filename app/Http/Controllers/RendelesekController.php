@@ -7,43 +7,24 @@ use Illuminate\Http\Request;
 
 class RendelesekController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    //Rendelés törlése
+    public function RendelesTorlese(Request $req)
     {
-        //
-    }
+        $rendelesId = $req->input("rendelesId");
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if(empty($rendelesId))
+        {
+            return response()->json(["valasz" => "Minden adat megadása kötelező!"], 400);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Rendelesek $rendelesek)
-    {
-        //
-    }
+        $eredmeny = Rendelesek::RendelesTorlese($rendelesId);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Rendelesek $rendelesek)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Rendelesek $rendelesek)
-    {
-        //
-    }
+        if($eredmeny == -1) {
+            return response()->json(["valasz" => "Váratlan hiba történt, kérjük próbálja újra később!"], 418);
+        } else if($eredmeny == 0) {
+            return response()->json(["valasz" => "Ha ezt a hibaüzenetet éátja kérem vegye fel a kapcsolatot a rendszergazdával!"], 418);
+        } else {
+            return response()->json(["valasz" => "A rendelését sikeresen törölte!"]);
+        }
+    }    
 }

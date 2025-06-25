@@ -1,0 +1,20 @@
+Backend:
+    Rendelések:
+KÉSZ    rendelés (és tételeinek) törlése,
+        rendelések és annak minden adatának lekérése felhasználó/időpont alapján;
+
+    Rendelés tételek:
+        rendelés tételek mennyiségének módosítása;
+
+    Termékek:
+        C : termékek felvitele,
+        R : termékek kiírása minden adatukkal együtt,
+        U : termék bármely adatának módosítása,
+        D : termékek törlése;
+
+
+Frontend:
+    vendég felhasználó;
+
+
+Database:
