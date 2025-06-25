@@ -1,7 +1,7 @@
 Backend:
     Rendelések:
 KÉSZ    rendelés (és tételeinek) törlése,
-        rendelések és annak minden adatának lekérése felhasználó/időpont alapján;
+EZ MÉG NEM JÓ    rendelések és annak minden adatának lekérése felhasználó/időpont/időintervallum alapján; (FRONTEND::  ezt úgy képzeltem el, hogy ilyen széles kártyákban fel van sorolva a rendelés, azokat le lehet nyitni és az alatt jelennek meg hogy milyen termékek tartoznak a rendelésbe)
 
     Rendelés tételek:
         rendelés tételek mennyiségének módosítása;
@@ -14,7 +14,6 @@ KÉSZ    rendelés (és tételeinek) törlése,
 
 
 Frontend:
-    vendég felhasználó;
 
 
-Database:
+KÉSZ Database:

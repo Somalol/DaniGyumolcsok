@@ -27,4 +27,29 @@ class RendelesekController extends Controller
             return response()->json(["valasz" => "A rendelését sikeresen törölte!"]);
         }
     }    
+
+
+    //Rendelés adatainak lekérése szempontok alapján
+    public function RendelesLekeres(Request $req)
+    {
+        $felhaszId = $req->input("felhaszId") ?? null;
+        $startDate = $req->input("startDate") ?? null;
+        $endDate = $req->input("endDate") ?? null;
+    
+        if(empty($felhaszId) && empty($startDate) && empty($endDate))
+        {
+            return response()->json(["valasz" => "Kérem adja meg a megfelelő keresési feltételeket!"], 400);
+        }
+
+        $eredmeny = Rendelesek::RendelesLekeres($felhaszId, $startDate, $endDate);
+
+        if($eredmeny->isEmpty())
+        {
+            //Ha nincs találat a keresésre
+            return response()->json(["valasz" => "A megadott feltételekkel nincsen keresési eredmény!"], 400);
+        }
+
+        //Ellenben ha van találat visszaadjuk azt
+        return response()->json(["valasz" => $eredmeny]);
+    }
 }

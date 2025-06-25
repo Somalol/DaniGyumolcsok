@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class Felhasznalok extends Model
-{
+{    
     //Felhasználó létezésének igazolása az adatbázisban
-    public static function Kereses($felhaszNev, $email)
+    public static function LetezesKereses($felhaszNev, $email)
     {
         if($felhaszNev == null) {
             //Email alapján
@@ -63,7 +63,7 @@ class Felhasznalok extends Model
     public static function Regisztracio($teljesNev, $felhaszNev, $email, $jelszo)
     {
         //Ellenőrizzük, hogy a felhasználó már létezik-e (név vagy email alapján)
-        $letezik = self::Kereses($felhaszNev, $email);
+        $letezik = self::LetezesKereses($felhaszNev, $email);
 
         if($letezik)
         {
