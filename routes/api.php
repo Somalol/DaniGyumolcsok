@@ -11,3 +11,6 @@ Route::post("/bejelentkezes", [FelhasznalokController::class, "Bejelentkezes"]);
 //Rendelesek(Controller) API útvonalai
 Route::delete("/rendelestorles", [RendelesekController::class, "RendelesTorlese"]);
 Route::post("/rendeleslekeres", [RendelesekController::class, "RendelesLekeres"]);
+
+//Termekek(Controller) API útvonalai
+Route::get("/osszestermek", [App\Http\Controllers\TermekekController::class, "osszestermek"]);
