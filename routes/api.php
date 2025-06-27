@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FelhasznalokController;
 use App\Http\Controllers\RendelesekController;
+use App\Http\Controllers\RendelesTetelekController;
 use Illuminate\Support\Facades\Route;
 
 //Felhasznalok(Controller) API útvonalai
@@ -14,3 +15,6 @@ Route::post("/rendeleslekeres", [RendelesekController::class, "RendelesLekeres"]
 
 //Termekek(Controller) API útvonalai
 Route::get("/osszestermek", [App\Http\Controllers\TermekekController::class, "osszestermek"]);
+
+//RendelesTetelek(Controller) API útvonala
+Route::post("/mennyisegmodositas", [RendelesTetelekController::class, "RendelesTetelekMennyisegModositas"]);

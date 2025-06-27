@@ -7,6 +7,20 @@ use Illuminate\Support\Facades\DB;
 
 class Termekek extends Model
 {
+    //Új termék felvitele
+    public static function UjTermek($nev, $leiras, $ar, $mert, $kiszereles, $kep)
+    {
+        return DB::table("termekek")
+            ->insert([
+                "nev" => $nev,
+                "leiras" => $leiras,
+                "ar" => $ar,
+                "mertekegyseg_id" => $mert,
+                "kiszereles" => $kiszereles,
+                "kepURL" => $kep
+            ]);
+    }
+
     //Minden termék lekérése
     public static function OsszesTermek()
     {

@@ -4,10 +4,10 @@ KÉSZ    rendelés (és tételeinek) törlése,
 EZ MÉG NEM JÓ    rendelések és annak minden adatának lekérése felhasználó/időpont/időintervallum alapján; (FRONTEND::  ezt úgy képzeltem el, hogy ilyen széles kártyákban fel van sorolva a rendelés, azokat le lehet nyitni és az alatt jelennek meg hogy milyen termékek tartoznak a rendelésbe)
 
     Rendelés tételek:
-        rendelés tételek mennyiségének módosítása;
+KÉSZ    rendelés tételek mennyiségének módosítása;
 
     Termékek:
-        C : termékek felvitele,
+KÉSZ    C : termékek felvitele,
 KÉSZ    R : termékek kiírása minden adatukkal együtt,
         U : termék bármely adatának módosítása,
         D : termékek törlése;

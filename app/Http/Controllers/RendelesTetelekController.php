@@ -7,43 +7,24 @@ use Illuminate\Http\Request;
 
 class RendelesTetelekController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    //Rendelés tételek mennyiségének módosítása
+    public function RendelesTetelekMennyisegModositas(Request $request)
     {
-        //
-    }
+        $rendelesId = $request->input("rendeles_id");
+        $termekId = $request->input("termek_id");
+        $mennyiseg = $request->input("mennyiseg");
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if(empty($rendelesId) || empty($termekId) || empty($mennyiseg))
+        {
+            return response()->json(["error" => "Kérem adjon meg minden adatot!"], 400);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(RendelesTetelek $rendelesTetelek)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, RendelesTetelek $rendelesTetelek)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(RendelesTetelek $rendelesTetelek)
-    {
-        //
+        $eredmeny = RendelesTetelek::RendelesTetelekMennyisegModositas($rendelesId, $termekId, $mennyiseg);
+    
+        if($eredmeny == 0) {
+            return response()->json(["valasz" => "A módodítás sikertelen!"], 400);
+        } else {
+            return response()->json(["valasz" => "A tétel mennyiségét sikeresen módosította!"], 200);
+        }
     }
 }
