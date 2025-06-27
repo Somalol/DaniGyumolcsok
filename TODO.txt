@@ -22,4 +22,4 @@ Frontend:
         Admin felület megcsinálása
         Kártyákon csak bizonyos hosszig jelenjen meg a leírás
 
-KÉSZ Database:
+KÉSZ Database
