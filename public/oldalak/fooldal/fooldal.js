@@ -29,7 +29,7 @@ function termekekBetoltes(termekek){
 
     for(let termek of termekek){
 
-      let divCard = document.createElement("div");
+        let divCard = document.createElement("div");
         divCard.classList = "card col-12 col-lg-3 col-md-6 col-sm-12 p-2 mx-auto my-3"; 
         divCard.style = "width: 18rem;";
         divCard.id = termek.termek;
@@ -82,6 +82,9 @@ function termekekBetoltes(termekek){
         btnKorsarba.classList = "btn btn-primary w-100";
         btnKorsarba.value = "Kosárba";
         btnKorsarba.id = "btn"+termek.termek;
+        btnKorsarba.addEventListener("click", function(){
+          //kosarMegjelen();
+        })
 
         divRow.appendChild(divCard);
 
@@ -197,6 +200,77 @@ function modalMegjelenit(termekek){
   
 }
 
+//TODO
+function kosarMegjelen(){
+    foDiv = document.getElementById("termekek");  
+
+  for(let termek of termekek){
+    let divModalFade = document.createElement("div");
+    divModalFade.classList = "modal fade";
+    divModalFade.id = "modal"+termek.id;
+    divModalFade.tabIndex = "-1";
+    divModalFade.role = "dialog";
+    divModalFade.setAttribute("aria-lebelledby", "myModalLabel");
+    divModalFade.ariaHidden = "true";
+
+    let divModalDialog = document.createElement("div");
+    divModalDialog.classList = "modal-dialog";
+    divModalDialog.role = "document";
+
+    let divModalContent = document.createElement("div");
+    divModalContent.classList = "modal-content text-center";
+    
+    let divModalHeader = document.createElement("div");
+    divModalHeader.classList = "modal-header";
+
+    let h5ModalTitle = document.createElement("h5");
+    h5ModalTitle.classList = "modal-title mx-auto";
+    h5ModalTitle.id = "myModalLabel";
+    h5ModalTitle.innerHTML = "Kosár";
+
+    let btnClose = document.createElement("button");
+    btnClose.type = "button";
+    btnClose.classList = "close";
+    btnClose.setAttribute("data-bs-dismiss", "modal");
+    btnClose.setAttribute("aria-label", "Bezárás");
+
+
+    let divModalBody = document.createElement("div");
+    divModalBody.classList = "modal-body";
+    divModalBody.innerHTML = termek.leiras;
+
+
+    let divModalFooter = document.createElement("div");
+    divModalFooter.classList = "modal-footer";
+
+    let div = document.createElement("div");
+    div.classList = "mx-auto";
+
+    let btnVasarlas = document.createElement("input");
+    btnVasarlas.type = "button";
+    btnVasarlas.classList = "btn btn-primary me-2";
+    btnVasarlas.value = "Vásárlás";
+
+    let btnBezar = document.createElement("button");
+    btnBezar.classList = "btn btn-secondary ms-2";
+    btnBezar.setAttribute("data-bs-dismiss", "modal");
+    btnBezar.innerHTML = "Bezár";
+
+    foDiv.appendChild(divModalFade);
+    divModalFade.appendChild(divModalDialog);
+    divModalDialog.appendChild(divModalContent);
+
+    divModalContent.appendChild(divModalHeader);
+    divModalHeader.appendChild(h5ModalTitle);
+
+    divModalContent.appendChild(divModalBody);
+
+    divModalContent.appendChild(divModalFooter);
+    divModalFooter.appendChild(div);
+    div.appendChild(btnVasarlas);
+    div.appendChild(btnBezar);
+  }
+}
 
 
 window.addEventListener("load", function(){
