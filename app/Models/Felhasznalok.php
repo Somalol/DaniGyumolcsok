@@ -60,7 +60,7 @@ class Felhasznalok extends Model
     }   
 
     //Regisztráció
-    public static function Regisztracio($teljesNev, $felhaszNev, $email, $jelszo)
+    public static function Regisztracio($teljesNev, $felhaszNev, $email, $telszam, $lakcim, $jelszo)
     {
         //Ellenőrizzük, hogy a felhasználó már létezik-e (név vagy email alapján)
         $letezik = self::LetezesKereses($felhaszNev, $email);
@@ -78,6 +78,8 @@ class Felhasznalok extends Model
                 "teljesNev" => $teljesNev,
                 "felhaszNev" => $felhaszNev,
                 "email" => $email,
+                "telefonszam" => $telszam,
+                "lakcim" => $lakcim,
                 "jelszo" => $hashJelszo
         ]);
 

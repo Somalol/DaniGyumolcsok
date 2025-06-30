@@ -22,7 +22,7 @@ class RendelesekController extends Controller
         if($eredmeny == -1) {
             return response()->json(["valasz" => "Váratlan hiba történt, kérjük próbálja újra később!"], 418);
         } else if($eredmeny == 0) {
-            return response()->json(["valasz" => "Ha ezt a hibaüzenetet éátja kérem vegye fel a kapcsolatot a rendszergazdával!"], 418);
+            return response()->json(["valasz" => "Ha ezt a hibaüzenetet látja kérem vegye fel a kapcsolatot a rendszergazdával!"], 418);
         } else {
             return response()->json(["valasz" => "A rendelését sikeresen törölte!"]);
         }

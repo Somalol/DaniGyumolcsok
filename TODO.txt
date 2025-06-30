@@ -1,7 +1,8 @@
 Backend:
     Rendelések:
-KÉSZ    rendelés (és tételeinek) törlése,
-EZ MÉG NEM JÓ    rendelések és annak minden adatának lekérése felhasználó/időpont/időintervallum alapján; (FRONTEND::  ezt úgy képzeltem el, hogy ilyen széles kártyákban fel van sorolva a rendelés, azokat le lehet nyitni és az alatt jelennek meg hogy milyen termékek tartoznak a rendelésbe)
+KÉSZ    rendelés (és tételeinek) törlése
+KÉSZ    rendelések és annak minden adatának lekérése felhasználó/időpont/időintervallum alapján;
+        (Itt a fentihez egy kis magyarázat. Lehet csak a felhasználó id-ja alapján keresni, vagy lehet egy adott nap alapján [pl.: "2025-06-25"], vagy 2 dátum között [pl.: "2025-06-24", "2025-06-26"])
 
     Rendelés tételek:
 KÉSZ    rendelés tételek mennyiségének módosítása;

@@ -14,6 +14,8 @@ class FelhasznalokController extends Controller
         $teljesNev = $request->input("teljesNev");
         $felhaszNev = $request->input("felhaszNev");
         $email = $request->input("email");
+        $telszam = $request->input("telefonszam");
+        $lakcim = $request->input("lakcim");
         $jelszo = $request->input("jelszo");
 
         //Adatok meg vannak-e adva
@@ -23,7 +25,7 @@ class FelhasznalokController extends Controller
         }
 
         ///Regisztráció
-        $eredmeny = Felhasznalok::Regisztracio($teljesNev, $felhaszNev, $email, $jelszo);
+        $eredmeny = Felhasznalok::Regisztracio($teljesNev, $felhaszNev, $email, $telszam, $lakcim, $jelszo);
 
         //Ha létezik
         if($eredmeny == null)

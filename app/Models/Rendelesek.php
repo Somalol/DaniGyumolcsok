@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class Rendelesek extends Model
@@ -46,7 +47,7 @@ class Rendelesek extends Model
                 ->join("mertekegysegek", "termekek.mertekegyseg_id", "=", "mertekegysegek.id")
                 ->where("rendelesek.felhasznalo_id", $felhaszId)
                 ->get();
-        } else if ($startDate != $endDate) {
+        } else if ($startDate != $endDate && !empty($endDate)) {
             //Ha intervallumon keresünk
 
             return DB::table("rendelesek")
@@ -58,7 +59,7 @@ class Rendelesek extends Model
                 ->join("mertekegysegek", "termekek.mertekegyseg_id", "=", "mertekegysegek.id")
                 ->whereBetween("rendelesek.datum", [$startDate, $endDate])
                 ->get();
-        } else if ($startDate != null && $endDate == null) {
+        } else {
             //Ha egy bizonyos napot keresünk (ez mindig a mai defaultban majd)
 
             return DB::table("rendelesek")
@@ -68,7 +69,7 @@ class Rendelesek extends Model
                 ->join("felhasznalok", "rendelesek.felhasznalo_id", "=", "felhasznalok.id")
                 ->join("termekek", "rendeles_tetelek.termek_id", "=", "termekek.id")
                 ->join("mertekegysegek", "termekek.mertekegyseg_id", "=", "mertekegysegek.id")
-                ->where("rendeles.datum", $startDate)
+                ->whereDate("rendelesek.datum", $startDate)
                 ->get();
         }
     }
