@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Termekek extends Model
 {
     //Új termék felvitele
-    public static function UjTermek($nev, $leiras, $ar, $mert, $kiszereles, $kep)
+    public static function UjTermek($nev, $leiras, $ar, $mert, $kiszereles, $kategoria_id, $kep)
     {
         return DB::table("termekek")
             ->insert([
@@ -17,6 +17,7 @@ class Termekek extends Model
                 "ar" => $ar,
                 "mertekegyseg_id" => $mert,
                 "kiszereles" => $kiszereles,
+                "kategoria_id" => $kategoria_id,
                 "kepURL" => $kep
             ]);
     }
@@ -29,5 +30,23 @@ class Termekek extends Model
             ->join("mertekegysegek", "termekek.mertekegyseg_id", "=", "mertekegysegek.id")
             ->orderBy("termekek.id")
             ->get();
+    }
+
+    //Termék adatának módosítása
+    public static function TermekModositas($id, $modositandoAdat, $ujErtek)
+    {
+        return DB::table("termekek")
+            ->where("id", $id)
+            ->update([
+                $modositandoAdat => $ujErtek
+            ]);
+    }
+
+    //Termék törlése
+    public static function TermekTorles($id)
+    {
+        return DB::table("termekek")
+            ->where("id", $id)
+            ->delete(); 
     }
 }

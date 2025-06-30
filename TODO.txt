@@ -9,8 +9,8 @@ KÉSZ    rendelés tételek mennyiségének módosítása;
     Termékek:
 KÉSZ    C : termékek felvitele,
 KÉSZ    R : termékek kiírása minden adatukkal együtt,
-        U : termék bármely adatának módosítása,
-        D : termékek törlése;
+KÉSZ    U : termék bármely adatának módosítása,
+KÉSZ    D : termékek törlése;
 
 
 Frontend:
