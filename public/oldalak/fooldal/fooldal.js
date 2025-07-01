@@ -210,7 +210,7 @@ function kosarBetolt() {
     divModalFade.ariaHidden = "true";
 
     let divModalDialog = document.createElement("div");
-    divModalDialog.classList = "modal-dialog";
+    divModalDialog.classList = "modal-dialog modal-lg";
     divModalDialog.role = "document";
 
     let divModalContent = document.createElement("div");
@@ -295,15 +295,43 @@ function kosarMegjelen() {
             li.classList = "list-group-item";
 
             let adottTermek = termekek.find((x) => x.id == index.id);
-            let label = document.createElement("span");
-            label.innerHTML =
+            let labelAdatok = document.createElement("span");
+            labelAdatok.innerHTML =
+                "<b>"+
+                index.mennyiseg +
+                "</b> x " +
                 adottTermek.termek +
                 " - " +
                 adottTermek.ar +
                 " Ft / " +
                 adottTermek.kiszereles +
                 " " +
-                adottTermek.mertekegyseg;
+                adottTermek.rovidites;
+
+            let labelEgyFajtaTermekOsszar = document.createElement("label");
+            labelEgyFajtaTermekOsszar.innerHTML = 
+                "<b>" +
+                index.mennyiseg * adottTermek.ar +
+                " Ft</b>";
+            labelEgyFajtaTermekOsszar.classList = "me-4";
+            labelEgyFajtaTermekOsszar.style.float = "right";
+
+            let btnTermekMennyisegNovel = document.createElement("button");
+            btnTermekMennyisegNovel.type = "button";
+            btnTermekMennyisegNovel.classList = "btn btn-primary btn-sm me-2";
+            btnTermekMennyisegNovel.innerHTML = "+";
+            btnTermekMennyisegNovel.style.float = "right";
+
+            let btnTermekMennyisegCsokkent = document.createElement("button");
+            btnTermekMennyisegCsokkent.type = "button";
+            btnTermekMennyisegCsokkent.classList = "btn btn-primary btn-sm";
+            btnTermekMennyisegCsokkent.innerHTML = "-";
+            btnTermekMennyisegCsokkent.style.float = "right";
+
+            let labelMennyiseg = document.createElement("label");
+            labelMennyiseg.innerHTML = index.mennyiseg;
+            labelMennyiseg.classList = "mx-2 fs-5";
+            labelMennyiseg.style.float = "right";
 
             let btnTermekTorles = document.createElement("button");
             btnTermekTorles.type = "button";
@@ -313,8 +341,12 @@ function kosarMegjelen() {
             btnTermekTorles.style.float = "right";
 
             ul.appendChild(li);
-            li.appendChild(label);
+            li.appendChild(labelAdatok);
             li.appendChild(btnTermekTorles);
+            li.appendChild(btnTermekMennyisegNovel);
+            li.appendChild(labelMennyiseg);
+            li.appendChild(btnTermekMennyisegCsokkent);
+            li.appendChild(labelEgyFajtaTermekOsszar);
         }
     }
 
