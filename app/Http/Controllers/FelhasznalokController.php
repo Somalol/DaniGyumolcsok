@@ -21,7 +21,7 @@ class FelhasznalokController extends Controller
         //Adatok meg vannak-e adva
         if($teljesNev == null || $felhaszNev == null || $email == null || $jelszo == null)
         {
-            return response()->json(["eredmeny" => "Kérem töltsön ki minden mezőt!"], 400);
+            return response()->json(["valasz" => "Kérem töltsön ki minden mezőt!"], 400);
         }
 
         ///Regisztráció
@@ -30,11 +30,11 @@ class FelhasznalokController extends Controller
         //Ha létezik
         if($eredmeny == null)
         {
-            return response()->json(["eredmeny" => "Ilyen felhasználónév/email már létezik!"], 400);
+            return response()->json(["valasz" => "Ilyen felhasználónév/email már létezik!"], 400);
         }
 
         //Ha sikeres a regisztráció
-        return response()->json(["eredmeny" => "Sikeres regisztráció!"]);
+        return response()->json(["valasz" => "Sikeres regisztráció!"]);
     }   
     
     ///Bejelentkezés
@@ -48,7 +48,7 @@ class FelhasznalokController extends Controller
         //Adatok meg vannak-e adva
         if($felhaszNev == null && $email == null || $jelszo == null)
         {
-            return response()->json(["eredmeny" => "Kérem töltsön ki minden mezőt!"], 400);
+            return response()->json(["valasz" => "Kérem töltsön ki minden mezőt!"], 400);
         }
 
         ///Bejelentkezés
@@ -57,10 +57,10 @@ class FelhasznalokController extends Controller
         //ha felhasználónév/jelszó helytelen
         if($eredmeny == null)
         {
-            return response()->json(["eredmeny" => "Helytelen felhasználónév/email vagy jelszó! Ha még nincs fiókja regisztráljon!"], 400);
+            return response()->json(["valasz" => "Helytelen felhasználónév/email vagy jelszó! Ha még nincs fiókja regisztráljon!"], 400);
         }
 
         //Ha sikeres a bejelentkezés
-        return response()->json(["eredmeny" => "Sikeres bejelentkezés!"]);
+        return response()->json(["valasz" => "Sikeres bejelentkezés!"]);
     }
 }

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link href="./bejelentkezes.css" rel="stylesheet" />
+        <title>Login Form with Register Modal</title>
+    </head>
+    <body>
+        <!-- Login Form -->
+        <div class="card login-card">
+            <h4 class="mb-3 text-center">Bejelentkezés</h4>
+
+            <form>
+                <input
+                    id="loginEmailFelhasznalo"
+                    type="text"
+                    class="form-control"
+                    placeholder="Email/Felhasználónév"
+                    required
+                />
+                <input
+                    id="loginJelszo"
+                    type="password"
+                    class="form-control"
+                    placeholder="Jelszó"
+                    required
+                />
+                <button
+                    id="loginGomba"
+                    type="button"
+                    class="btn btn-primary w-100"
+                >
+                    Bejelentkezem!
+                </button>
+            </form>
+
+            <div class="alert alert-danger mt-4" role="alert" hidden></div>
+
+            <div class="text-center mt-2">
+                Nincs még fiókja?
+                <a
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#registerModal"
+                    >Regisztráljon</a
+                >
+                vagy folytassa
+                <a href="../fooldal/fooldal.html">bejelentkezés nélkül</a>.
+            </div>
+        </div>
+
+        <div
+            class="modal fade"
+            id="registerModal"
+            tabindex="-1"
+            aria-labelledby="registerModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">
+                            Regisztráció
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <input
+                                id="registerTeljesNev"
+                                type="text"
+                                class="form-control"
+                                placeholder="Teljes név"
+                                required
+                            />
+                            <input
+                                id="registerFelhasznaloNev"
+                                type="text"
+                                class="form-control"
+                                placeholder="Felhasználónév"
+                                required
+                            />
+                            <input
+                                id="registerEmail"
+                                type="email"
+                                class="form-control"
+                                placeholder="Email"
+                                required
+                            />
+                            <input
+                                id="registerTelszam"
+                                type="text"
+                                class="form-control"
+                                placeholder="Telefonszám"
+                                required
+                            />
+                            <input
+                                id="registerLakcim"
+                                type="text"
+                                class="form-control"
+                                placeholder="Lakcím (rendelésekhez fontos)"
+                                required
+                            />
+                            <input
+                                id="registerJelszo"
+                                type="password"
+                                class="form-control"
+                                placeholder="Jelszó"
+                                required
+                            />
+                            <input
+                                id="registerJelszoUjra"
+                                type="password"
+                                class="form-control"
+                                placeholder="Jelszó újra"
+                                required
+                            />
+                            <button
+                                id="registerGomba"
+                                type="button"
+                                class="btn btn-success w-100 mt-3"
+                            >
+                                Regisztrálok!
+                            </button>
+                        </form>
+                        <div
+                            class="alert alert-danger mt-3"
+                            role="alert"
+                            hidden
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./bejelentkezes.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
