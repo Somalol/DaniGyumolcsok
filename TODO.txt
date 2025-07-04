@@ -16,11 +16,14 @@ KÉSZ    D : termékek törlése;
 
 Frontend:
     Főoldal:
-        Összes termék adatának kiírása a modalba és a kártyákra
-        Termékek kosárba helyzése
-        Kosár megjelenítése
-        Kosárban a termékeket csökkenteni és növelni
+        Összes termék adatának kiírása a modalba és a kártyákra - KÉSZ
+        Termékek kosárba helyzése - KÉSZ
+        Kosár megjelenítése - KÉSZ
+        Kosárban a termékeket csökkenteni és növelni - KÉSZ
         Admin felület megcsinálása
         Kártyákon csak bizonyos hosszig jelenjen meg a leírás
+        Kategóriák alapján szétválasztani a termékeket, úgy hogy külön fieldset-be legyenek
+        Bootstrap-es scrollspy-t hozzáadni a navbar-hoz
+        Kijelentkezés gomb megcsinálása
 
 KÉSZ Database
