@@ -85,6 +85,7 @@ function termekekBetoltes() {
         btnKorsarba.id = "btn" + termek.termek;
         btnKorsarba.addEventListener("click", function () {
             termekKosarba(termek.id);
+            kosarbanLevoTermekSzamlalo();
         });
 
         divRow.appendChild(divCard);
@@ -171,6 +172,10 @@ function modalMegjelenit() {
         btnKorsarba.classList = "btn btn-primary me-2";
         btnKorsarba.value = "Kosárba";
         btnKorsarba.id = "btn" + termek.termek;
+        btnKorsarba.addEventListener("click", function () {
+            termekKosarba(termek.id);
+            kosarbanLevoTermekSzamlalo();
+        });
 
         let btnBezar = document.createElement("button");
         btnBezar.classList = "btn btn-secondary ms-2";
@@ -279,17 +284,19 @@ function kosarMegjelen() {
 
     let ul = document.createElement("ul");
     ul.classList = "list-group mx-3 my-3";
-    console.log(kosar);
+    
+    let vegosszeg = 0;
 
     if (kosar == "") {
         let alert = document.createElement("div");
-        alert.classList = "alert alert-warning text-center";
+        alert.classList = "alert alert-warning text-center mt-3";
         alert.role = "alert";
         alert.innerHTML = "Nincs termék a kosárban!";
 
         divModalContent.appendChild(divModalBody);
         divModalBody.appendChild(alert);
     } else {
+        let termekSzamlalo = 0;
         for (let index of kosar) {
             let li = document.createElement("li");
             li.classList = "list-group-item";
@@ -308,58 +315,120 @@ function kosarMegjelen() {
                 " " +
                 adottTermek.rovidites;
 
+            labelAdatok.classList = "fs-5";
+
             let labelEgyFajtaTermekOsszar = document.createElement("label");
             labelEgyFajtaTermekOsszar.innerHTML = 
                 "<b>" +
                 index.mennyiseg * adottTermek.ar +
                 " Ft</b>";
-            labelEgyFajtaTermekOsszar.classList = "me-4";
-            labelEgyFajtaTermekOsszar.style.float = "right";
+            labelEgyFajtaTermekOsszar.classList = "fs-5 ms-3";
+
+            vegosszeg += index.mennyiseg * adottTermek.ar;
 
             let btnTermekMennyisegNovel = document.createElement("button");
             btnTermekMennyisegNovel.type = "button";
-            btnTermekMennyisegNovel.classList = "btn btn-primary btn-sm me-2";
+            btnTermekMennyisegNovel.classList = "btn btn-primary btn-sm";
             btnTermekMennyisegNovel.innerHTML = "+";
-            btnTermekMennyisegNovel.style.float = "right";
+
+            //Hozzáad a mennyiséghez 1-et
+            btnTermekMennyisegNovel.addEventListener("click", function(){
+                let termekIndex = kosar.findIndex(x => x.id === index.id);
+
+                kosar[termekIndex].mennyiseg += 1;
+                localStorage.setItem("kosar", JSON.stringify(kosar));
+                kosarMegjelen();
+            })
 
             let btnTermekMennyisegCsokkent = document.createElement("button");
             btnTermekMennyisegCsokkent.type = "button";
-            btnTermekMennyisegCsokkent.classList = "btn btn-primary btn-sm";
             btnTermekMennyisegCsokkent.innerHTML = "-";
-            btnTermekMennyisegCsokkent.style.float = "right";
+
+            if(index.mennyiseg <= 1){
+                console.log("kisebb 1")
+                btnTermekMennyisegCsokkent.classList = "btn btn-primary btn-sm";
+                btnTermekMennyisegCsokkent.disabled = true;
+            }
+            else{
+                console.log("nagyobb 1")
+                btnTermekMennyisegCsokkent.classList = "btn btn-primary btn-sm";
+                btnTermekMennyisegCsokkent.disabled = false;
+            }
+            
+
+            //Kivon a mennyiségből 1-et
+            btnTermekMennyisegCsokkent.addEventListener("click", function(){
+                let termekIndex = kosar.findIndex(x => x.id === index.id);
+
+                kosar[termekIndex].mennyiseg -= 1;
+                localStorage.setItem("kosar", JSON.stringify(kosar));
+                kosarMegjelen();
+            })
 
             let labelMennyiseg = document.createElement("label");
             labelMennyiseg.innerHTML = index.mennyiseg;
             labelMennyiseg.classList = "mx-2 fs-5";
-            labelMennyiseg.style.float = "right";
 
             let btnTermekTorles = document.createElement("button");
             btnTermekTorles.type = "button";
             btnTermekTorles.value = "Törlés";
-            btnTermekTorles.classList = "btn btn-danger btn-sm";
+            btnTermekTorles.classList = "btn btn-danger";
             btnTermekTorles.innerHTML = "Törlés";
             btnTermekTorles.style.float = "right";
+
+            //Termék törlése a kosárból
+            btnTermekTorles.addEventListener("click", function(){
+                kosar = kosar.filter(termek => termek.id !== index.id);
+                localStorage.setItem("kosar", JSON.stringify(kosar));
+                kosarMegjelen();
+                kosarbanLevoTermekSzamlalo();
+            })
+
+            let br = document.createElement("br");
+
+            termekSzamlalo += index.mennyiseg;
 
             ul.appendChild(li);
             li.appendChild(labelAdatok);
             li.appendChild(btnTermekTorles);
-            li.appendChild(btnTermekMennyisegNovel);
-            li.appendChild(labelMennyiseg);
+            li.appendChild(br);
             li.appendChild(btnTermekMennyisegCsokkent);
+            li.appendChild(labelMennyiseg);
+            li.appendChild(btnTermekMennyisegNovel);
             li.appendChild(labelEgyFajtaTermekOsszar);
         }
+        document.getElementById("kosarbanLevoTermekSzamlalo").innerHTML = termekSzamlalo >= 1 ? termekSzamlalo : "";
     }
+
+    let divVegosszeg = document.createElement("div");
+    divVegosszeg.classList = "fs-3 mb-2";
+    divVegosszeg.innerHTML = vegosszeg != 0 ? "Végösszeg: "+vegosszeg+ " Ft" : "";
 
     divModalContent.appendChild(ul);
     divModalContent.appendChild(divModalFooter);
 
     divModalFooter.appendChild(div);
+    div.appendChild(divVegosszeg);
     div.appendChild(btnVasarlas);
     div.appendChild(btnBezar);
 }
 
+function kosarbanLevoTermekSzamlalo(){
+    let kosar = JSON.parse(localStorage.getItem("kosar")) || [];
+
+    let szamlalo = 0;
+
+    for(let termek of kosar){
+        szamlalo+=termek.mennyiseg;
+    }
+
+    document.getElementById("kosarbanLevoTermekSzamlalo").innerHTML = szamlalo >= 1 ? szamlalo : "";
+    
+}
+
 window.addEventListener("load", function () {
     osszesTermekLeker();
+    kosarbanLevoTermekSzamlalo();
 });
 
 document
