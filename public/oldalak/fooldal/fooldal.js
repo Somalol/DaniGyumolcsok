@@ -1,4 +1,5 @@
 var termekek = [];
+var kategoriak = new Set();
 
 async function osszesTermekLeker() {
     try {
@@ -6,9 +7,15 @@ async function osszesTermekLeker() {
 
         if (leker.ok) {
             termekek = await leker.json();
+
+            for(let termek of termekek){
+                kategoriak.add(termek.kategoria);
+            }
+
             termekekBetoltes();
             modalMegjelenit();
             kosarBetolt();
+            navbarScrollSpyBeallitas();
         } else {
             console.log(leker.status);
         }
@@ -17,91 +24,133 @@ async function osszesTermekLeker() {
     }
 }
 
+function navbarScrollSpyBeallitas(){
+    let ul = document.getElementById("scrollspy");
+    for(let kategoria of kategoriak){
+        console.log(kategoria)
+        let li = document.createElement("li");
+        li.classList = "nav-item";
+
+        let a = document.createElement("a");
+        a.classList = "nav-link";
+        a.href = "#"+kategoria;
+        a.innerHTML = kategoria;
+
+        ul.appendChild(li);
+        li.appendChild(a);
+    }
+}
+
 function termekekBetoltes() {
     divContainer = document.getElementById("termekek");
-
-    let divRow = document.createElement("div");
-    divRow.classList = "row";
-
     divContainer.innerHTML = "";
+    
+    for(let kategoria of kategoriak){
 
-    divContainer.appendChild(divRow);
+        let fieldset = document.createElement("fieldset");
+        fieldset.id = kategoria
+        fieldset.classList = "mx-auto filter-box border p-3 bg-light rounded my-3";
 
-    for (let termek of termekek) {
-        let divCard = document.createElement("div");
-        divCard.classList =
-            "card col-12 col-lg-3 col-md-6 col-sm-12 p-2 mx-auto my-3";
-        divCard.style = "width: 18rem;";
-        divCard.id = termek.termek;
+        let legend = document.createElement("legend");
+        legend.classList = "text-center my-4 display-6";
+        legend.innerHTML = kategoria;
 
-        let div = document.createElement("div");
-        div.classList = "mx-auto";
-        div.style.height = "230px";
-        div.style.width = "250px";
+        let divKartyak = document.createElement("div");
+        divKartyak.setAttribute("data-bs-spy", "scroll");
+        divKartyak.setAttribute("data-bs-target", "#navbar");
+        divKartyak.setAttribute("data-bs-root-margin", "0px 0px -40%");
+        divKartyak.setAttribute("data-bs-smooth-scroll", "true");
+        divKartyak.classList = "scrollspy-example bg-body-tertiary p-3 rounded-2";
+        divKartyak.tabIndex = "0";
 
-        let img = document.createElement("img");
-        img.src = "../.." + termek.kepURL;
-        img.classList = "card-img-top";
-        img.alt = termek.termek;
-        img.style.maxWidth = "250px";
-        img.style.maxHeight = "230px";
+        let divRow = document.createElement("div");
+        divRow.classList = "row";
 
-        let divCardBody = document.createElement("div");
-        divCardBody.classList = "card-body text-center";
+        divContainer.appendChild(fieldset);
+        fieldset.appendChild(legend);
+        fieldset.appendChild(divKartyak);
+        divKartyak.appendChild(divRow);
 
-        let h5 = document.createElement("h5");
-        h5.classList = "card-title display-6";
-        h5.innerHTML = termek.termek;
+        for (let termek of termekek) {
+            if(termek.kategoria == kategoria){
+                let divCard = document.createElement("div");
+                divCard.classList =
+                    "card col-12 col-lg-3 col-md-6 col-sm-12 p-2 mx-auto my-3";
+                divCard.style = "width: 18rem;";
+                divCard.id = termek.termek;
 
-        let cardText = document.createElement("p");
-        cardText.classList = "card-text";
-        cardText.innerHTML = termek.leiras;
+                let div = document.createElement("div");
+                div.classList = "mx-auto";
+                div.style.height = "230px";
+                div.style.width = "250px";
 
-        let ul = document.createElement("ul");
-        ul.classList =
-            "list-group list-group-horizontal justify-content-center my-3";
+                let img = document.createElement("img");
+                img.src = "../.." + termek.kepURL;
+                img.classList = "card-img-top";
+                img.alt = termek.termek;
+                img.style.maxWidth = "250px";
+                img.style.maxHeight = "230px";
 
-        let liAr = document.createElement("li");
-        liAr.classList = "list-group-item";
-        liAr.innerHTML = termek.ar + " Ft";
+                let divCardBody = document.createElement("div");
+                divCardBody.classList = "card-body text-center";
 
-        let liMertekegyseg = document.createElement("li");
-        liMertekegyseg.classList = "list-group-item";
-        liMertekegyseg.innerHTML =
-            termek.kiszereles + " " + termek.mertekegyseg;
+                let h5 = document.createElement("h5");
+                h5.classList = "card-title display-6";
+                h5.innerHTML = termek.termek;
 
-        let btnReszletek = document.createElement("input");
-        btnReszletek.type = "button";
-        btnReszletek.classList = "btn btn-info mb-3";
-        btnReszletek.value = "Részletek";
-        btnReszletek.id = "btn" + termek.termek;
-        btnReszletek.setAttribute("data-bs-toggle", "modal");
-        btnReszletek.setAttribute("data-bs-target", "#modal" + termek.id);
+                let cardText = document.createElement("p");
+                cardText.classList = "card-text";
+                cardText.innerHTML = termek.leiras;
 
-        let btnKorsarba = document.createElement("input");
-        btnKorsarba.type = "button";
-        btnKorsarba.classList = "btn btn-primary w-100";
-        btnKorsarba.value = "Kosárba";
-        btnKorsarba.id = "btn" + termek.termek;
-        btnKorsarba.addEventListener("click", function () {
-            termekKosarba(termek.id);
-            kosarbanLevoTermekSzamlalo();
-        });
+                let ul = document.createElement("ul");
+                ul.classList =
+                    "list-group list-group-horizontal justify-content-center my-3";
 
-        divRow.appendChild(divCard);
+                let liAr = document.createElement("li");
+                liAr.classList = "list-group-item";
+                liAr.innerHTML = termek.ar + " Ft";
 
-        divCard.appendChild(div);
-        div.appendChild(img);
-        divCard.appendChild(divCardBody);
+                let liMertekegyseg = document.createElement("li");
+                liMertekegyseg.classList = "list-group-item";
+                liMertekegyseg.innerHTML =
+                    termek.kiszereles + " " + termek.mertekegyseg;
 
-        divCardBody.appendChild(h5);
-        divCardBody.appendChild(cardText);
-        divCardBody.appendChild(ul);
-        ul.appendChild(liAr);
-        ul.appendChild(liMertekegyseg);
-        divCardBody.appendChild(btnReszletek);
-        divCardBody.appendChild(btnKorsarba);
+                let btnReszletek = document.createElement("input");
+                btnReszletek.type = "button";
+                btnReszletek.classList = "btn btn-info mb-3";
+                btnReszletek.value = "Részletek";
+                btnReszletek.id = "btn" + termek.termek;
+                btnReszletek.setAttribute("data-bs-toggle", "modal");
+                btnReszletek.setAttribute("data-bs-target", "#modal" + termek.id);
+
+                let btnKorsarba = document.createElement("input");
+                btnKorsarba.type = "button";
+                btnKorsarba.classList = "btn btn-primary w-100";
+                btnKorsarba.value = "Kosárba";
+                btnKorsarba.id = "btn" + termek.termek;
+                btnKorsarba.addEventListener("click", function () {
+                    termekKosarba(termek.id);
+                    kosarbanLevoTermekSzamlalo();
+                });
+
+                divRow.appendChild(divCard);
+
+                divCard.appendChild(div);
+                div.appendChild(img);
+                divCard.appendChild(divCardBody);
+
+                divCardBody.appendChild(h5);
+                divCardBody.appendChild(cardText);
+                divCardBody.appendChild(ul);
+                ul.appendChild(liAr);
+                ul.appendChild(liMertekegyseg);
+                divCardBody.appendChild(btnReszletek);
+                divCardBody.appendChild(btnKorsarba);
+            }
+            
+        }
     }
+    
 }
 
 function modalMegjelenit() {
@@ -287,6 +336,8 @@ function kosarMegjelen() {
     
     let vegosszeg = 0;
 
+    let divVegosszeg = document.createElement("div");
+
     if (kosar == "") {
         let alert = document.createElement("div");
         alert.classList = "alert alert-warning text-center mt-3";
@@ -398,9 +449,12 @@ function kosarMegjelen() {
             li.appendChild(labelEgyFajtaTermekOsszar);
         }
         document.getElementById("kosarbanLevoTermekSzamlalo").innerHTML = termekSzamlalo >= 1 ? termekSzamlalo : "";
+
+        div.appendChild(divVegosszeg);
+        div.appendChild(btnVasarlas);
     }
 
-    let divVegosszeg = document.createElement("div");
+    
     divVegosszeg.classList = "fs-3 mb-2";
     divVegosszeg.innerHTML = vegosszeg != 0 ? "Végösszeg: "+vegosszeg+ " Ft" : "";
 
@@ -408,8 +462,7 @@ function kosarMegjelen() {
     divModalContent.appendChild(divModalFooter);
 
     divModalFooter.appendChild(div);
-    div.appendChild(divVegosszeg);
-    div.appendChild(btnVasarlas);
+    
     div.appendChild(btnBezar);
 }
 
@@ -430,6 +483,7 @@ window.addEventListener("load", function () {
     osszesTermekLeker();
     kosarbanLevoTermekSzamlalo();
 });
+
 
 document
     .getElementById("btnKosarMegtekint")

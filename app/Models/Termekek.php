@@ -26,7 +26,7 @@ class Termekek extends Model
     public static function OsszesTermek()
     {
         return DB::table("termekek")
-            ->select("termekek.id", "termekek.nev as termek", "termekek.leiras", "termekek.ar", "termekek.kiszereles", "mertekegysegek.nev as mertekegyseg", "mertekegysegek.rovidites","termekek.kepURL", "termekek.kategoia_id")
+            ->select("termekek.id", "termekek.nev as termek", "termekek.leiras", "termekek.ar", "termekek.kiszereles", "mertekegysegek.nev as mertekegyseg", "mertekegysegek.rovidites","termekek.kepURL", "termekek.kategoia_id", "kategoriak.kategoria")
             ->join("mertekegysegek", "termekek.mertekegyseg_id", "=", "mertekegysegek.id")
             ->join("kategoriak", "termekek.kategoia_id","=", "kategoriak.id")
             ->orderBy("termekek.id")

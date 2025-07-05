@@ -9,30 +9,24 @@
 </head>
 <body>
     <!--Navigációs sáv-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="navbar">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="text-center">
+                <div class="d-flex justify-content-between align-items-center w-100">
                     <button type="button" class="btn btn-outline-primary position-relative" data-bs-target="#kosarModal" id="btnKosarMegtekint" data-bs-toggle="modal">
                         Kosár megtekintése
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="kosarbanLevoTermekSzamlalo"></span>
                     </button>
+                    <ul class="nav nav-pills" id="scrollspy">
+                    </ul>
                 </div>
-                <!--TODO-->
-                <!--<button type="button" class="btn btn-outline-danger" id="btnKijelentkezes">Kijelentkezés</button>-->
             </div>
         </div>
     </nav>
 
     <!--Termék kártyák-->
-    <div class="container">
-        <fieldset id="fieldset" class="mx-auto filter-box border p-3 bg-light rounded my-3">
-            <legend class="text-center my-4 display-6">Termékek</legend>
-            <div id="termekek">
-            </div>
-        </fieldset>
-    </div>
+    <div class="container" id="termekek"></div>
 
     <script src="fooldal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
